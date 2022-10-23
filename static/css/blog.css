@@ -1,0 +1,39 @@
+html *
+{
+   font-family: Poppins !important;
+}
+
+a:link {
+    color: #00246B;
+}
+
+a:visited {
+    color: black;
+}
+
+html body
+{
+   max-width: 100%;
+   overflow-x: hidden;
+}
+
+.nav-link
+{
+    color: white;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+p { font-size: 14px; }
+
+@media (max-width: 576px) {
+    .card-img-top {
+        width: 100%;
+        height: 50vw;
+        object-fit: cover;
+    }
+}
