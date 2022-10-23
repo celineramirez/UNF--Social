@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="col">
+<!--    <img class="img-fluid w-100" src="{% static 'Pano.png' %}" alt="">-->
+</div>
+
+<div class="container-sm">
+    <div class="row">
+        <div class="col">
+            <div class="text-center pb-3">
+                <img class='img-fluid w-100 border border-dark border-3' src="{{ post.thumbnail }}" alt="">
+            </div>
+            <h2><strong>{{ post.title }}</strong></h2>
+            <p>Event date: {{ post.event_date }}</p>
+            <p><b>Description</b></p>
+            <p> {{ post.text }}</p>
+            <p>Posted by: {{ post.author }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
