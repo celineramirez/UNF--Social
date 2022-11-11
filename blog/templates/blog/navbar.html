@@ -13,6 +13,27 @@
             </button>
         </div>
 
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+              {% if user.is_authenticated %}
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+              {% comment %} <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+              </li> {% endcomment %}
+        
+              {% else %}
+        
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+        
+              {% endif %}
+            </ul>
+        </div>
+
         <div class="col-sm-2 pe-4">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
