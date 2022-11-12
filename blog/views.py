@@ -23,7 +23,7 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful." )
+            messages.success(request, "Registration successful.")
             return redirect("unfsocial:homepage")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
@@ -46,7 +46,8 @@ def login_request(request):
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
-    return render(request=request, template_name="blog/login.html", context={"login_form":form})
+    return render(request=request, template_name="blog/login.html",
+                  context={"login_form": form})
 
 
 def logout_request(request):
