@@ -28,6 +28,7 @@ class User(models.Model):
     email = models.CharField(max_length=200)
     hashed_pwd = models.CharField(max_length=50, blank=False, null=False)
 
+<<<<<<< HEAD
     def create_user(self, club_account, admin_account):
         self.join_date = timezone.now()
         self.is_club_account = club_account
@@ -37,6 +38,8 @@ class User(models.Model):
         self.email = iemail
         self.hashed_pwd = sha256(ipwd)
 
+=======
+>>>>>>> main
 
 class AttendanceLog(models.Model):
     attendance_id = models.CharField(max_length=200)
@@ -57,6 +60,10 @@ class Announcement(models.Model):
     post_id = models.CharField(max_length=200)
     is_club_announcement = models.BooleanField()
     is_admin_announcement = models.BooleanField()
+<<<<<<< HEAD
     header = models.CharField(max_length=50)
+=======
+    header= models.CharField(max_length=50)
+>>>>>>> main
     message = models.CharField(max_length=200)
 
