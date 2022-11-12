@@ -40,7 +40,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("unfsocial:homepage")
+                return redirect('post_list')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -52,7 +52,7 @@ def login_request(request):
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect("blog:homepage")
+    return redirect("post_list")
 
 
 def error_404_view(request, exception):
