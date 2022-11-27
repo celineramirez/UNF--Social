@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+<div class="container">
+	<!--Django Model Form-->
+	{% if user.is_authenticated %}
+	<h2 class="my-4">Add a new post</h2>
+	<form method="post" enctype="multipart/form-data">
+	  {% csrf_token %}
+		  {{post_form|crispy}}
+		  <button class="btn btn-primary my-4" type="submit">Submit</button>
+	</form>
+	{% endif %}
+	{% if not user.is_authenticated %}
+	<h2> Please login before attempting to create a post. </h2>
+	{%endif%}
+</div>
+
+
+{% endblock %}
