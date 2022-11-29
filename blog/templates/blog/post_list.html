@@ -26,10 +26,8 @@
                         
                             {% if user.is_authenticated and post.author == user%}
                                 <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
+                            <a href="{% url 'deletepost' post.pk %}"><button class="btn btn-danger"> Delete </button></a>
                             {% endif %}
-
-
                         </div>
                     </div>
                 </div>

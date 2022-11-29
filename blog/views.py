@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
+from datetime import datetime
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import NewUserForm
@@ -34,14 +35,19 @@ def create_post(request):
     if request.method == "POST":
         post_form = PostForm(request.POST, request.FILES)
         if post_form.is_valid():
+            request.POST.published_date = datetime.today()
             post_form.save()
-            messages.success(request, ('Your movie was successfully added!'))
+            messages.success(request, ('Your post was successfully added!'))
         else:
             pass
-        return render(post_list)
+        return redirect("post_list")
     post_form = PostForm()
     return render(request=request, template_name="blog/create_post.html", context={'post_form': post_form})
 
+
+def delete_post(request, id=None):
+    Post.objects.filter(pk=id).delete()
+    return redirect("post_list")
 
 def register_request(request):
     if request.method == "POST":
