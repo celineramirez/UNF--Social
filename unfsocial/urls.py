@@ -24,7 +24,8 @@ urlpatterns = [
     path("register/", views.register_request, name="register"),
     path("login", views.login_request, name="login"),
     path("logout", views.logout_request, name="logout"),
-    path("createpost", views.create_post, name="createpost")
+    path("createpost", views.create_post, name="createpost"),
+    path("edituser", views.edit_user, name='edituser')
 ]
 
 handler404 = views.error_404_view

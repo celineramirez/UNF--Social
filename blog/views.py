@@ -18,6 +18,13 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+def edit_user(request):
+    if request.user.is_authenticated:
+        return render(request, template_name="blog/edit_user.html", context={'user': request.user})
+    else:
+        return redirect("post_list")
+
+
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     pass
