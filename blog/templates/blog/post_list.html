@@ -25,7 +25,7 @@
                             {% endif %}
                         
                             {% if user.is_authenticated and post.author == user%}
-                                <button class="btn btn-primary">Edit</button>
+                            <a href="{% url 'editpost' post.pk %}"><button class="btn btn-primary"> Edit </button></a>
                             <a href="{% url 'deletepost' post.pk %}"><button class="btn btn-danger"> Delete </button></a>
                             {% endif %}
                         </div>

@@ -26,9 +26,26 @@ def edit_user(request):
         return redirect("post_list")
 
 
-def edit_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    pass
+def edit_post(request, id):
+    # if request.method == "POST":
+    #     post = Post.objects.get(pk=id)
+    #     form = PostForm(request.POST or None, instance=post)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request ,('Your post was successfully edited!'))
+    #         return render(request,'blog/edit_post.html', {'post_form': form})
+    #     else:
+    #         pass
+    #     return redirect("post_list")
+    post = Post.objects.get(pk=id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/edit_post.html', {'post_form': form})
 
 
 def create_post(request):
