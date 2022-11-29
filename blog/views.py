@@ -21,22 +21,22 @@ def post_detail(request, pk):
 
 def edit_user(request):
     if request.user.is_authenticated:
-        return render(request, template_name="blog/edit_user.html", context={'user': request.user})
+        user = request.user
+        if request.method == 'POST':
+            form = NewUserForm(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                login(request, user)
+                messages.success(request, 'Account updated')
+                return redirect('post_list')
+        else:
+            form = NewUserForm(instance=user)
+            return render(request, 'blog/edit_user.html', context={"register_form": form})
     else:
         return redirect("post_list")
 
 
 def edit_post(request, id):
-    # if request.method == "POST":
-    #     post = Post.objects.get(pk=id)
-    #     form = PostForm(request.POST or None, instance=post)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(request ,('Your post was successfully edited!'))
-    #         return render(request,'blog/edit_post.html', {'post_form': form})
-    #     else:
-    #         pass
-    #     return redirect("post_list")
     post = Post.objects.get(pk=id)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -65,6 +65,7 @@ def create_post(request):
 def delete_post(request, id=None):
     Post.objects.filter(pk=id).delete()
     return redirect("post_list")
+
 
 def register_request(request):
     if request.method == "POST":
