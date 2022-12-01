@@ -10,6 +10,19 @@ class Post(models.Model):
     text = models.TextField()
     event_date = models.DateTimeField(blank=True, null=True)
     published_date = models.DateTimeField(blank=True, null=True)
+    tag1 = 'tag1'
+    tag2 = 'tag2'
+    tag3 = 'tag3'
+    tag4 = 'tag4'
+    tag5 = 'tag5'
+    tag_choices = [
+        (tag1, 'tag1'),
+        (tag2, 'tag2'),
+        (tag3, 'tag3'),
+        (tag4, 'tag4'),
+        (tag5, 'tag5'),
+    ]
+    tag = models.CharField(max_length=15, blank=True, null=True, choices=tag_choices)
 
     def publish(self):
         self.published_date = timezone.now()
