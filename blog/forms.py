@@ -25,7 +25,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('author', 'thumbnail', 'title', 'text', 'event_date', 'published_date', 'tag')
+        fields = ('author', 'thumbnail', 'title', 'text', 'event_date', 'published_date')
         model.published_date = date.today()
 
 
