@@ -1,5 +1,7 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Hidden
 from django import forms
-from datetime import date
+from datetime import date, datetime
 from .models import Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -23,9 +25,18 @@ class NewUserForm(UserCreationForm):
 # Create your forms here.
 class PostForm(forms.ModelForm):
 
+    published_date = forms.DateField(initial=datetime.now())
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields["author"].initial = user
+        self.fields['published_date'].widget.attrs['readonly'] = True
+
     class Meta:
         model = Post
         fields = ('author', 'thumbnail', 'title', 'text', 'event_date', 'published_date', 'tag')
-        model.published_date = date.today()
+        widgets = {'author': forms.HiddenInput(), 'published_date': forms.HiddenInput()}
+
 
 

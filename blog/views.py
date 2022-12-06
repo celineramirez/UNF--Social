@@ -39,26 +39,25 @@ def edit_user(request):
 def edit_post(request, id):
     post = Post.objects.get(pk=id)
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, instance=post, user=request.user)
         if form.is_valid():
             form.save()
             return redirect('post_detail', post.pk)
     else:
-        form = PostForm(instance=post)
+        form = PostForm(instance=post, user=request.user)
     return render(request, 'blog/edit_post.html', {'post_form': form})
 
 
 def create_post(request):
     if request.method == "POST":
-        post_form = PostForm(request.POST, request.FILES)
+        post_form = PostForm(request.POST, request.FILES, user=request.user)
         if post_form.is_valid():
-            request.POST.published_date = datetime.today()
             post_form.save()
             messages.success(request, ('Your post was successfully added!'))
         else:
             pass
         return redirect("post_list")
-    post_form = PostForm()
+    post_form = PostForm(user=request.user)
     return render(request=request, template_name="blog/create_post.html", context={'post_form': post_form})
 
 
