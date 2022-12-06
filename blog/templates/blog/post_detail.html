@@ -18,6 +18,10 @@
             <p> {{ post.text }}</p>
             <p>Posted by: {{ post.author }}</p>
             <p>Tag: {{ post.tag }}</p>
+            {% if user.is_authenticated and post.author == user%}
+            <a href="{% url 'editpost' post.pk %}"><button class="btn btn-primary"> Edit </button></a>
+            <a href="{% url 'deletepost' post.pk %}"><button class="btn btn-danger"> Delete </button></a>
+            {% endif %}
         </div>
     </div>
 </div>

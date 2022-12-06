@@ -9,9 +9,16 @@ from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm
 
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+def post_list(request, itag=None):
+    if itag is not None and itag != "all posts":
+        posts = Post.objects.filter(tag=itag)
+    else:
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
+
+
+def post_filter(request, inputtag):
+    return post_list(request=None, itag=inputtag)
 
 
 def post_detail(request, pk):

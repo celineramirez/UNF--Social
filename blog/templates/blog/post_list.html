@@ -9,6 +9,23 @@
             <figure class="text-center p-4">
                 <h2><strong>Events happening at UNF</strong></h2>
             </figure>
+
+                    <div class="btn btm-primary dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink2" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter posts
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'all posts' %}">All posts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'study session' %}">Study Sessions</a></li>
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'gym session' %}">Gym sessions</a></li>
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'campus event' %}">Campus events</a></li>
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'club event' %}">Club events</a></li>
+                            <li><a class="dropdown-item" href="{% url 'postfilter' 'important' %}">Important events</a></li>
+                        </ul>
+                    </div>
+
+
             <div class="row gy-3">
                 {% for post in posts %}
                 <div class="col-sm">
