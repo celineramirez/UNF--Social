@@ -28,7 +28,7 @@ def edit_user(request):
                 form.save()
                 login(request, user)
                 messages.success(request, 'Account updated')
-                return redirect('post_list')
+            return redirect('post_list')
         else:
             form = NewUserForm(instance=user)
             return render(request, 'blog/edit_user.html', context={"register_form": form})
