@@ -18,7 +18,7 @@ def post_list(request, itag=None):
 
 
 def post_filter(request, inputtag):
-    return post_list(request=None, itag=inputtag)
+    return post_list(request=request, itag=inputtag)
 
 
 def post_detail(request, pk):
